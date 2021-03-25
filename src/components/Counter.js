@@ -52,6 +52,8 @@ import {useState} from 'react';
 export default function Counter() {
   /* STEP 1 */
   const [count, setCount] = useState(0);
+  const blue = 'royalBlue';
+  const red = 'crimson';
 
   const increment = () => setCount(count + 1);
   const decrement = () => setCount(count - 1);
@@ -60,7 +62,7 @@ export default function Counter() {
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: count %2 ? "royalBlue" : "crimson"
+    color: count %2 ? blue : red
   };
 
   return (
