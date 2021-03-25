@@ -34,35 +34,44 @@ STEP 6:
   We need to add an extra prop to the <input /> element like so: value={inputValue}
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState } from "react"; /* STEP 0 */
+const blue = "royalBlue";
+const red = "crimson";
 
 export default function Input() {
-  /* STEP 1 */
-
-  const changeInput = evt => {
+  const [inputValue, setInputValue] = useState("");
+  const changeInput = (evt) => {
     // When the input changes, its whole value can be found inside the event object.
     // Log out the synthetic event object 'evt' and see for yourself.
     const { value } = evt.target;
-
-    /* STEP 4 */
+    setInputValue(value);
+    console.log(inputValue.length);
   };
   const reset = () => {
-    /* STEP 5 */
+    setInputValue("");
   };
 
   const style = {
-    fontSize: '1.5em',
-    marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    fontSize: "1.5em",
+    marginBottom: "0.3em",
+    color: inputValue.length > 10 ? red : blue,
   };
 
   return (
-    <div className='widget-input container'>
+    <div className="widget-input container">
       <h2>Input</h2>
-      <div id='output' style={style}></div> {/* STEP 3 */}
+      <div id="output" style={style}></div> {inputValue.toUpperCase()}
       <div>
-        <input id='input' type='text' onChange={changeInput} /> {/* STEP 6 */}
-        <button id='resetInput' onClick={reset}>Reset</button>
+        <input
+          id="input"
+          type="text"
+          onChange={changeInput}
+          /**Fixed input not clearing on reset */
+          value={inputValue}
+        />
+        <button id="resetInput" onClick={reset}>
+          Reset
+        </button>
       </div>
     </div>
   );
